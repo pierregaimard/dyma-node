@@ -1,0 +1,27 @@
+extends ../layout
+
+block title
+  title Twitter | Sign-up
+
+block content
+  div(class="d-flex flex-row content justify-content-center mx-auto")
+    form(class="card w-50 mt-5" method="post" action="/user/sign-up")
+      .card-header Inscription
+      .card-body
+        div
+          label(for="username") Username
+          input.form-control(type="text" name="username" id="username" value= data.username ? data.username : "")
+        if errors.username
+          .mt-1.text-danger #{ errors.username }
+        div
+          label(for="email") Email
+          input.form-control(type="text" name="email" id="email" value= data.email ? data.email : "")
+        if errors["local.email"]
+          .mt-1.text-danger #{ errors["local.email"] }
+        div
+          label(for="password") Password
+          input.form-control(type="password" name="password" id="password")
+        if errors["local.password"]
+          .mt-1.text-danger #{ errors["local.password"] }
+        .mt-3.w-100
+          input(type="submit" value="Register" class="btn btn-primary ms-auto d-block")

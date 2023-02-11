@@ -1,0 +1,14 @@
+extends ../layout
+
+block scripts
+  script(src="/javascripts/tweet/list.js")
+
+block title
+  title Twitter | Home
+
+block content
+  div(class="d-flex flex-row content mx-auto b1")
+    include ../includes/profile
+    div(class="flex-fill d-flex flex-column tweet-list")
+      if tweets
+        include _list

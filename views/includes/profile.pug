@@ -1,0 +1,26 @@
+.profile-container.me-3.mt-2.bg-white.d-flex.flex-column.p-3.rounded-3
+  form.d-flex.flex-row.justify-content-center.align-items-center(
+    action="/user/update/avatar"
+    method="POST"
+    enctype="multipart/form-data"
+  )
+    input.d-none(type="file" name="avatar")
+    img.img-fluid.rounded-circle.profile-img(
+      src= user.avatar ? `/images/${user.avatar}` : "/images/profile.jpeg"
+    )
+
+  .d-flex.flex-row.justify-content-center.align-items-center.mt-2
+    p #{ `${user.username} (${user.local.email})` }
+  .d-flex.flex-row.justify-content-center.align-items-center.mt-2.text-center
+    .flex-fill
+      p
+        strong Tweet
+        br
+        span.text-primary #{tweets.length}
+    .flex-fill
+      p
+        strong Following
+        br
+        span.text-primary -
+
+script(src="/javascripts/user/profile.js")

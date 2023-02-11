@@ -1,0 +1,27 @@
+extends ../layout
+
+block title
+  title Twitter | New
+
+block scripts
+  script(src="/javascripts/tweet/edit.js")
+
+block content
+  div(class="d-flex flex-row content mx-auto")
+    .profile-container
+      include ../includes/profile
+    .flex-fill
+      form(class="card" method="post" action= tweet ? `/tweet/edit/${tweet._id}`:"/tweet/new" )
+        .card-header #{ tweet ? "Modifier un tweet" : "Écrire un tweet" }
+        .card-body
+          div
+            textarea(
+              class="form-control"
+              name="content"
+              placeholder="What is happening"
+            ) #{ tweet ? tweet.content : "" }
+          .mt-1.text-info.content-length-count.text-end
+          if errors.content
+            .mt-1.text-danger #{ errors.content }
+          .mt-3.w-100
+            input(type="submit" value="Send" class="btn btn-primary ms-auto d-block")
